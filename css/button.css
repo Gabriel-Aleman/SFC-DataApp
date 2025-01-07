@@ -1,0 +1,15 @@
+button {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b); /* Tonos de rojo */
+    color: #ffff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+}
+
+button:hover {
+    transform: scale(1.1); /* Efecto visual adicional */
+}
