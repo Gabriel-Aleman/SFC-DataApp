@@ -8,7 +8,7 @@ zona_horaria = pytz.timezone('America/Costa_Rica')  # Puedes cambiar la zona hor
 hoy = pd.Timestamp(datetime.now(tz=zona_horaria)).tz_localize(None)
 
 
-tokenWimu= "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2NjkxMmRlNmVlNGQ3ZTM1NTIzYmZmMDciLCJjbHViIjoiNjQwZWVjOWE4NTY2ZDQxMmMyZTdlZGUyIiwiY2VudGVyIjoiNjQwZWVkMTE4NTY2ZDQxMmMyZTgxZWRiIiwidXNlclR5cGUiOiJDRU5URVJfQURNSU4iLCJ1c2VyIjoiNjY5MTJkZTZlZTRkN2UzNTUyM2JmZjA3IiwiZXhwIjoxNzM0NDQwMzM1fQ.My4K4JezASVS36X6CdifkeEqFaRmfA28O3oPp1Vt1PE"
+tokenWimu= "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2NjkxMmRlNmVlNGQ3ZTM1NTIzYmZmMDciLCJjbHViIjoiNjQwZWVjOWE4NTY2ZDQxMmMyZTdlZGUyIiwiY2VudGVyIjoiNjQwZWVkMTE4NTY2ZDQxMmMyZTgxZWRiIiwidXNlclR5cGUiOiJDRU5URVJfQURNSU4iLCJ1c2VyIjoiNjY5MTJkZTZlZTRkN2UzNTUyM2JmZjA3IiwiZXhwIjoxNzM2OTA5MTQwfQ.HNjztIG4q-cdHc1k4ANhZYwKf2SpFDP6WNLeOHblGmc"
 
 headersWimu = {
     "accept": "application/json",
@@ -28,7 +28,7 @@ class myTeamAPIWimu(API):
         self.tokenIsValid =self.checkAPI()
 
     
-        if self.tokenIsValid:
+        if self.tokenIsValid == True:
             #IDLE:
             self.getTeams() #Obtener la lista de equipos
             self.getClubs() #Obtener la lista de clubes
@@ -40,7 +40,7 @@ class myTeamAPIWimu(API):
 
     def checkAPI(self):
         response = requests.get(self.urls["urlToken"], headers=self.header)
-        return (response.status_code == 200)        
+        return response.status_code  == 200     
     """
     getClubs: Método para obtener la lista de clubes matriculados.
     """

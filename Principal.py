@@ -1,6 +1,5 @@
 from headers import *
 
-
 #Variables globales
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if "inf" not in st.session_state: #Filtrado simple o complejo
