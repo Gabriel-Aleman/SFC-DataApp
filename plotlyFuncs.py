@@ -96,26 +96,15 @@ def crear_Dist(df, x, titulo, color):
 
     return fig
 
-def crear_boxplot(df, y, titulo, color):
-    fig = px.box(df, y=y, title=titulo, color_discrete_sequence=[color], notched=True)
-
-    fig.update_layout(
-        plot_bgcolor="white",  # Fondo blanco para el área de datos
-        title_font=dict(family="Arial, sans-serif", size=18, weight="bold"),  # Título más grande y con mejor fuente
-        xaxis_title="Valor",  # Título para el eje X
-        boxmode="group",  # Agrupa las cajas por categorías
-        xaxis=dict(
-            showgrid=True,  # Mostrar las líneas de la cuadrícula
-
-        ),
-
-        margin=dict(l=50, r=50, t=50, b=50),  # Márgenes de la figura
-        
-    )
-    
     return fig
 
-
+def crear_boxplot(df, y, titulo, color):
+    fig = px.box(df, y=y, title=titulo, color_discrete_sequence=[color], notched=True)
+    fig.update_layout(
+        plot_bgcolor="white",  # Fondo blanco para el área de datos
+        title_font_size=16,
+    )
+    return fig
 
 
 

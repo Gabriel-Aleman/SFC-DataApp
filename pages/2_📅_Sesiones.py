@@ -119,7 +119,6 @@ else:
             st.plotly_chart(crear_histograma(d, x="HSR", titulo="Histograma de High-Speed Running", color="purple", bins=bins))
         
         elif plot_type == "Box Plot":
-            st.plotly_chart()
             st.plotly_chart(crear_boxplot(d, y="dec", titulo="Box Plot de Desaceleración", color="green"))
             st.plotly_chart(crear_boxplot(d, y="HSR", titulo="Box Plot de High-Speed Running", color="purple"))
 
