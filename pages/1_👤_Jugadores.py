@@ -91,13 +91,25 @@ match selected:
         st.dataframe(st.session_state.df.reset_index(drop=True))
     
     case "Gráficos":
-        from plotlyFuncs import colors_hex
+        from plotlyFuncs import *
+        plot_type = st.radio("Selecciona el tipo de gráfico:", ["Linea", "Histograma","Distribución", "Box Plot", "Matriz-correlación"], horizontal=True)
+
         arrValues=["Distancia total", "Velocidad máxima", "HSR", "SPRINT", "acc", "dec"]
 
-
-        d=st.session_state.d.sort_values(by="Fecha")
+        d=st.session_state.d
+        if plot_type=="Histograma":
+            bins = st.slider("Selecciona el número de bins", min_value=5, max_value=50, value=10)
         for i,y in enumerate(arrValues):
-            st.line_chart(d, y=y, x="Fecha", color=colors_hex[i])
+            if plot_type=="Linea":
+                st.line_chart(d, y=y, x="Fecha", color=colors_hex[i])
+            elif plot_type=="Box Plot":
+                st.plotly_chart(crear_boxplot(d, y=y, titulo="Box Plot "+str(y), color=colors_hex[i]))
+            elif plot_type=="Histograma":
+                st.plotly_chart(crear_histograma(d, x=y, titulo="Histograma "+str(y), color=colors_hex[i], bins=bins))
+            elif plot_type=="Matriz-correlación":
+                st.plotly_chart(mapa_correlacion_todas_las_columnas(d.drop(columns="Fecha"),"Matriz de correlación"))
+            elif plot_type=="Distribución":
+                st.plotly_chart(crear_Dist(d, x=y, titulo="Histograma "+str(y), color=colors_hex[i]))
             
     case "Estadísticas":
     

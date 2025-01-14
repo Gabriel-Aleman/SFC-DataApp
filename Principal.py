@@ -16,6 +16,7 @@ st.set_page_config(
 st.logo("https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Sporting_Football_Club_2019.png/157px-Sporting_Football_Club_2019.png")
 
 
+
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -53,7 +54,7 @@ add_vertical_space(1)
 
 
 
-tab1, tab2, tab3 = st.tabs(["📄Informe", "📊Estadísticas", "Z-Score"])
+tab1, tab2, tab3, tab4 = st.tabs(["📄Informe", "🖩Estadísticas", "Z-Score", "📊Gráficos"])
 col1, col2, col3, col4 = st.columns(4)
 
 
@@ -110,10 +111,10 @@ with tab1:
     st.dataframe(st.session_state.df.reset_index(drop=True))
     st.info(f"📝 {len(st.session_state.df)} datos en la busqueda") 
     
-    des=myData.getStad(d=st.session_state.df)
+    des=myData.getStad(d=st.session_state.df).round(4)
 
     d=st.session_state.df[st.session_state.df.columns[4:]].copy()
-    sum=myData.getSum(d)
+    sum=myData.getSum(d).round(4)
 
     z=myData.getZScore(d=st.session_state.df)
     zn=z.copy()
@@ -123,16 +124,15 @@ with tab1:
         pass
 #Estadísticas:
 with tab2:
-        
-    st.subheader("- Descripción general", divider=True)
-
+    from plotlyFuncs import plotTable
+    st.subheader("Descripción general", divider=True)
     with stylable_container(
         key="std",
         css_styles=css_p
     ):
         st.write(des.drop(columns=["Duración"]).to_html(), unsafe_allow_html=True)
 
-    st.subheader("- Suma", divider=True)
+    st.subheader("Suma", divider=True)
     with stylable_container(
         key="sum",
         css_styles=css_p
@@ -157,5 +157,27 @@ exc=create_excel_file(inf)
 with col1:
     st.download_button(label="Descargar archivo Excel",data=exc,file_name=f'informeCompleto_{datetime.now()}.xlsx', type="secondary", icon=":material/download:")
 
+
+#Gráficos
+with tab4:
+    from plotlyFuncs import *
+    with st.container(border=True):
+        plot_type = st.radio("Selecciona el tipo de gráfico:", ["Histograma","Distribución", "Box Plot", "Matriz-correlación"], horizontal=True)
+    d=st.session_state.df
+    arrValues=["Distancia total", "Velocidad máxima", "HSR", "SPRINT", "acc", "dec"]
+
+
+    if plot_type=="Histograma":
+        bins = st.slider("Selecciona el número de bins", min_value=5, max_value=50, value=10)
     
-# %%
+    if plot_type=="Matriz-correlación":
+            st.plotly_chart(mapa_correlacion_todas_las_columnas(d.drop(columns=["Fecha", "Sesión", "Jugador", "Duración"]),"Matriz de correlación"), key="mat")
+    else: #TODO: ARREGLAR EN JUGADOR
+        for i,y in enumerate(arrValues):
+            
+            if plot_type=="Box Plot":
+                st.plotly_chart(crear_boxplot(d, y=y, titulo="Box Plot "+str(y), color=colors_hex[i]))
+            elif plot_type=="Histograma":
+                st.plotly_chart(crear_histograma(d, x=y, titulo="Histograma "+str(y), color=colors_hex[i], bins=bins))
+            elif plot_type=="Distribución":
+                st.plotly_chart(crear_Dist(d, x=y, titulo="Histograma "+str(y), color=colors_hex[i]))
