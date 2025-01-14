@@ -97,7 +97,7 @@ def crear_Dist(df, x, titulo, color):
     return fig
 
 def crear_boxplot(df, y, titulo, color):
-    fig = px.box(df, x=y, title=titulo, color_discrete_sequence=[color], notched=True)
+    fig = px.box(df, y=y, title=titulo, color_discrete_sequence=[color], notched=True)
 
     fig.update_layout(
         plot_bgcolor="white",  # Fondo blanco para el área de datos
