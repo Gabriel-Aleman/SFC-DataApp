@@ -13,8 +13,8 @@ df=myData.infFilteredSesions_comp()
 
 selected = option_menu(
     menu_title=None,  # required
-    options=["Sesión", "Gráficos"],  # required
-    icons=["calendar-event-fill", "graph-up"],  # optional
+    options=["Sesión", "Gráficos", "Estadísticas"],  # required
+    icons=["calendar-event-fill", "graph-up", "calculator-fill"],  # optional
     menu_icon="cast",  # optional
     default_index=0,  # optional
     orientation="horizontal",
@@ -119,7 +119,7 @@ else:
             st.plotly_chart(crear_histograma(d, x="HSR", titulo="Histograma de High-Speed Running", color="purple", bins=bins))
         
         elif plot_type == "Box Plot":
-            st.plotly_chart(crear_boxplot(d, y="acc", titulo="Box Plot de Aceleración", color="blue"))
+            st.plotly_chart()
             st.plotly_chart(crear_boxplot(d, y="dec", titulo="Box Plot de Desaceleración", color="green"))
             st.plotly_chart(crear_boxplot(d, y="HSR", titulo="Box Plot de High-Speed Running", color="purple"))
 
