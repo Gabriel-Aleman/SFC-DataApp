@@ -57,7 +57,9 @@ if selected=="Sesión":
 
 else:
     # Selección de tipo de gráfico
-    plot_type = st.radio("Selecciona el tipo de gráfico:", ["Barra", "Histograma", "Box Plot"])
+    with st.container(border=True):
+
+        plot_type = st.radio("Selecciona el tipo de gráfico:", ["Barra", "Histograma", "Box Plot"])
 
     d=st.session_state.df.drop(columns=["Fecha", "Duración"])
     # Abreviar nombres (e.g., Alejandro Feoli -> Alejandro F.)

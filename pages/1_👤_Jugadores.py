@@ -92,7 +92,8 @@ match selected:
     
     case "Gráficos":
         from plotlyFuncs import *
-        plot_type = st.radio("Selecciona el tipo de gráfico:", ["Linea", "Histograma","Distribución", "Box Plot", "Matriz-correlación"], horizontal=True)
+        with st.container(border=True):
+            plot_type = st.radio("Selecciona el tipo de gráfico:", ["Linea", "Histograma","Distribución", "Box Plot", "Matriz-correlación"], horizontal=True)
 
         arrValues=["Distancia total", "Velocidad máxima", "HSR", "SPRINT", "acc", "dec"]
 
