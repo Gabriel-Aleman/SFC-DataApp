@@ -2,31 +2,32 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 colors_hex = [
-    "#FFC1A1",  # Melocotón pastel
-    "#B4F0B4",  # Verde menta pastel
-    "#A1C4FF",  # Azul cielo pastel
-    "#FFB3D9",  # Rosa chicle pastel
-    "#FFE4A1",  # Amarillo crema pastel
-    "#D6FFE1",  # Verde agua pastel
-    "#D7A9A1",  # Rojo arcilla pastel
-    "#CAB0C7",  # Lavanda pastel
-    "#FFA4A4",  # Rojo coral pastel
-    "#A1B9D7",  # Azul grisáceo pastel
-    "#C1E1C1",  # Verde hierba pastel
-    "#FFD9A1",  # Naranja crema pastel
-    "#D1C1E7",  # Morado lavanda pastel
-    "#B0D4FF",  # Azul hielo pastel
-    "#FFCEDA",  # Rosa pétalo pastel
-    "#E8E8E8",  # Gris nube pastel
-    "#A9B2C4",  # Azul polvoriento pastel
-    "#D9A1A1",  # Rojo ladrillo pastel
-    "#F4A1A1",  # Rojo rosado pastel
-    "#B1C3CF",  # Gris azulado pastel
-    "#D9F6E1",  # Verde suave pastel
-    "#F7D4C4",  # Melocotón suave pastel
-    "#BAC3C9",  # Gris claro pastel
-    "#E4E6E9",  # Gris perla pastel
+    "#FF5733",  # Rojo anaranjado fuerte
+    "#28A745",  # Verde vibrante
+    "#007BFF",  # Azul fuerte
+    "#FF1493",  # Rosa intenso
+    "#FFC107",  # Amarillo dorado
+    "#20C997",  # Verde esmeralda
+    "#C0392B",  # Rojo ladrillo intenso
+    "#8E44AD",  # Morado brillante
+    "#FF4500",  # Naranja fuerte
+    "#1E90FF",  # Azul real
+    "#2ECC71",  # Verde primavera
+    "#FF8C00",  # Naranja oscuro
+    "#9B59B6",  # Púrpura vibrante
+    "#2980B9",  # Azul océano
+    "#FF69B4",  # Rosa chicle intenso
+    "#A9A9A9",  # Gris oscuro
+    "#34495E",  # Azul grisáceo oscuro
+    "#E74C3C",  # Rojo fuego
+    "#FF6347",  # Tomate fuerte
+    "#5D6D7E",  # Azul gris oscuro
+    "#27AE60",  # Verde esmeralda oscuro
+    "#E67E22",  # Naranja quemado
+    "#7F8C8D",  # Gris medio oscuro
+    "#BDC3C7",  # Gris claro vibrante
 ]
+
 
 
  # Función para crear un gráfico con Plotly
@@ -98,13 +99,16 @@ def crear_Dist(df, x, titulo, color):
 
     return fig
 
+
 def crear_boxplot(df, y, titulo, color):
     fig = px.box(df, y=y, title=titulo, color_discrete_sequence=[color], notched=True)
+
     fig.update_layout(
         plot_bgcolor="white",  # Fondo blanco para el área de datos
         title_font_size=16,
     )
     return fig
+
 
 
 
