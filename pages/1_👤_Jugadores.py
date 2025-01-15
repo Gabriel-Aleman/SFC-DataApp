@@ -103,6 +103,7 @@ match selected:
 
         if plot_type=="Matriz-correlación":
             st.plotly_chart(mapa_correlacion_todas_las_columnas(d.drop(columns="Fecha"),"Matriz de correlación"))
+        
         else:
             for i,y in enumerate(arrValues):
                 if plot_type=="Linea":
